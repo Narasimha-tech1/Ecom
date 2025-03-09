@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-commerce Web Application</title>
+   <link rel="stylesheet" href="Ecom.css">
+</head>
+<body>
+    <nav>
+        <div class="logo">My E-commerce Store</div>
+        <div class="nav-links">
+            <button id="user-greeting-button" class="user-greeting">
+                <img src="https://img.icons8.com/material-outlined/24/ffffff/user.png" alt="User">
+                <span id="user-greeting">Hello, Sign in</span>
+            </button>
+            <div id="user-menu" class="user-menu hidden">
+                <a href="#" onclick="showUserDetailsForm()">Your Account</a>
+                <a href="#" onclick="showSection('order-details')">Order Details</a>
+                <a href="#" onclick="showSection('customer-care')">Customer Care</a>
+                <a href="#" onclick="signIn()">Sign In</a>
+            </div>
+            <a href="#" class="home-icon" onclick="showSection('home')">
+                <img src="https://img.icons8.com/material-outlined/24/ffffff/home.png" alt="Home">
+            </a>
+            <a href="#" onclick="showSection('products')">Products</a>
+            <a href="#" class="cart-icon" onclick="showSection('cart')">
+                <img src="https://img.icons8.com/material-outlined/24/ffffff/shopping-cart.png" alt="Cart">
+                <span class="cart-count" id="cart-count">0</span>
+            </a>
+            <a href="#" onclick="showSection('contact')">Contact</a>
+            <select id="currency-selector" class="currency-selector" onchange="updatePrices()">
+                <option value="USD" selected>USD – United States Dollar</option>
+                <option value="EUR">EUR – Euro</option>
+                <option value="GBP">GBP – British Pound</option>
+                <option value="JPY">JPY – Japanese Yen</option>
+                <option value="CHF">CHF – Swiss Franc</option>
+                <option value="CAD">CAD – Canadian Dollar</option>
+                <option value="AUD">AUD – Australian Dollar</option>
+                <option value="CNY">CNY – Chinese Yuan</option>
+                <option value="INR">INR – Indian Rupee</option>
+                <option value="BRL">BRL – Brazilian Real</option>
+                <option value="RUB">RUB – Russian Ruble</option>
+                <option value="KRW">KRW – South Korean Won</option>
+                <option value="MXN">MXN – Mexican Peso</option>
+                <option value="ZAR">ZAR – South African Rand</option>
+                <option value="SAR">SAR – Saudi Riyal</option>
+                <option value="AED">AED – UAE Dirham</option>
+                <option value="HKD">HKD – Hong Kong Dollar</option>
+                <option value="SGD">SGD – Singapore Dollar</option>
+                <option value="TRY">TRY – Turkish Lira</option>
+                <option value="IDR">IDR – Indonesian Rupiah</option>
+            </select>
+        </div>
+    </nav>
+    <div class="main-content">
+        <header id="home">
+            <h1>Welcome to My E-commerce Store</h1>
+        </header>
+        <div id="products" class="container hidden">
+            <h2>Product List</h2>
+            <div class="product">
+                <img src="https://via.placeholder.com/150" alt="Product Image" onclick="showProductDetails(this.parentElement)">
+                <h2>Product Name</h2>
+                <p class="price" data-usd="19.99">USD 19.99</p>
+                <button onclick="addToCart()">Add to Cart</button>
+            </div>
+            <div class="product">
+                <img src="https://via.placeholder.com/150" alt="Product Image" onclick="showProductDetails(this.parentElement)">
+                <h2>Product Name</h2>
+                <p class="price" data-usd="29.99">USD 29.99</p>
+                <button onclick="addToCart()">Add to Cart</button>
+            </div>
+            <!-- Add more products as needed -->
+            <button onclick="showAddProductForm()">Add New Product</button>
+        </div>
+        <div id="cart" class="container hidden">
+            <h2>Cart Items</h2>
+            <ul id="cart-items"></ul>
+            <p id="total-amount">Total Amount: USD 0.00</p>
+        </div>
+        <div id="contact" class="container hidden contact-details">
+            <h2>Contact Details</h2>
+            <p>Name: Narasimha Raja Avvaru</p>
+            <p>Phone Number: 9966389316</p>
+            <p>Address: 5/115, New Madhavaram, Vontimitta(M), Kadapa(D), Andhra Pradesh, India, 516247</p>
+        </div>
+        <div id="order-details" class="container hidden">
+            <div id="order-details-container"></div>
+        </div>
+        <div id="product-details" class="container hidden">
+            <div id="product-details-container"></div>
+        </div>
+        <div id="account" class="container hidden">
+            <h2>Your Account</h2>
+            <div id="user-details-container"></div>
+        </div>
+        <div id="customer-care" class="container hidden">
+            <h2>Customer Care</h2>
+            <!-- Customer care details go here -->
+        </div>
+    </div>
+    <footer>
+        <p>&copy; 2025 My E-commerce Store</p>
+        <div id="contact-details" class="hidden">
+            <h2>Contact Details</h2>
+            <p>Name: Narasimha Raja Avvaru</p>
+            <p>Phone Number: 9966389316</p>
+            <p>Address: 5/115, New Madhavaram, Vontimitta(M), Kadapa(D), Andhra Pradesh, India, 516247</p>
+        </div>
+    </footer>
+    <div class="overlay" id="overlay" onclick="hideAddProductForm()"></div>
+    <div class="add-product-form hidden" id="add-product-form">
+        <h3>Add New Product</h3>
+        <input type="text" id="product-name" placeholder="Product Name" required>
+        <input type="number" id="product-price" placeholder="Product Price (USD)" required>
+        <input type="text" id="product-image-url" placeholder="Product Image URL">
+        <input type="file" id="product-image-file" accept="image/*">
+        <button onclick="addNewProduct()">Add Product</button>
+    </div>
+    <div class="user-details-form hidden" id="user-details-form">
+        <h3>Enter Your Details</h3>
+        <input type="text" id="user-name" placeholder="Name" required>
+        <input type="email" id="user-email" placeholder="Email" required>
+        <input type="tel" id="user-phone" placeholder="Phone" required>
+        <button onclick="saveUserDetails()">Save</button>
+    </div>
+    <script src="Ecom.js"></script>
+</body>
+</html>
