@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShopEase - Modern E-Commerce</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="Ecom.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="nav">
+            <div class="nav-logo">ShopEase</div>
+            <nav class="nav-main">
+                <a href="#" id="nav-home">Home</a>
+                <a href="#" id="nav-products">Products</a>
+                <a href="#" id="nav-categories">Categories</a>
+                <a href="#" id="nav-orders">Orders</a>
+                <a href="#" id="nav-cart"><i class="fa fa-shopping-cart"></i> <span id="cart-count">0</span></a>
+                <a href="#" id="nav-wishlist"><i class="fa fa-heart"></i></a>
+                <a href="#" id="nav-account"><i class="fa fa-user"></i></a>
+                <a href="#" id="nav-admin" style="display:none;"><i class="fa fa-cogs"></i> Admin</a>
+            </nav>
+            <div class="nav-actions">
+                <select id="currency-select">
+                    <option value="USD">USD</option>
+                    <option value="EUR">EUR</option>
+                    <option value="INR">INR</option>
+                    <option value="GBP">GBP</option>
+                </select>
+                <button id="logout-btn" style="display:none;"><i class="fa fa-sign-out-alt"></i></button>
+            </div>
+        </div>
+    </header>
+    <!-- Main Content -->
+    <main>
+        <!-- Home Banner -->
+        <section id="home-section" class="section">
+            <div class="banner">
+                <h1>Welcome to ShopEase</h1>
+                <p>Discover the best products, deals, and shopping experience.</p>
+                <button id="shop-now-btn">Shop Now</button>
+            </div>
+            <div id="featured-products" class="products-grid"></div>
+        </section>
+        <!-- Product Listing -->
+        <section id="products-section" class="section" style="display:none;">
+            <div class="controls-bar">
+                <input type="text" id="search-input" placeholder="Search products...">
+                <select id="sort-select">
+                    <option value="name">Sort by Name</option>
+                    <option value="price-low-high">Price: Low to High</option>
+                    <option value="price-high-low">Price: High to Low</option>
+                </select>
+                <select id="category-select">
+                    <option value="">All Categories</option>
+                </select>
+                <button id="filter-btn">Filter</button>
+                <button id="add-product-btn" style="display:none;"><i class="fa fa-plus"></i> Add Product</button>
+            </div>
+            <div id="products-grid" class="products-grid"></div>
+        </section>
+        <!-- Product Details Modal -->
+        <div class="modal" id="product-details-modal">
+            <div id="product-details-content"></div>
+            <button id="close-details-btn" class="modal-close">Close</button>
+        </div>
+        <!-- Cart Modal -->
+        <div class="modal" id="cart-modal">
+            <h2>Your Cart</h2>
+            <ul id="cart-list"></ul>
+            <div id="cart-summary"></div>
+            <button id="checkout-btn">Checkout</button>
+            <button id="close-cart-btn" class="modal-close">Close</button>
+        </div>
+        <!-- Wishlist Modal -->
+        <div class="modal" id="wishlist-modal">
+            <h2>My Wishlist</h2>
+            <ul id="wishlist-list"></ul>
+            <button id="close-wishlist-btn" class="modal-close">Close</button>
+        </div>
+        <!-- Orders Modal -->
+        <div class="modal" id="orders-modal">
+            <h2>My Orders</h2>
+            <ul id="orders-list"></ul>
+            <button id="close-orders-btn" class="modal-close">Close</button>
+        </div>
+        <!-- Address Book Modal -->
+        <div class="modal" id="address-modal">
+            <h2>Address Book</h2>
+            <ul id="address-list"></ul>
+            <input type="text" id="new-address" placeholder="Add new address">
+            <button id="add-address-btn">Add Address</button>
+            <button id="close-address-btn" class="modal-close">Close</button>
+        </div>
+        <!-- Coupon Modal -->
+        <div class="modal" id="coupon-modal">
+            <h2>Apply Coupon</h2>
+            <input type="text" id="coupon-code" placeholder="Enter coupon code">
+            <button id="apply-coupon-btn">Apply</button>
+            <div id="coupon-msg"></div>
+            <button id="close-coupon-btn" class="modal-close">Close</button>
+        </div>
+        <!-- Product Q&A Modal -->
+        <div class="modal" id="qa-modal">
+            <h2>Product Q&A</h2>
+            <div id="qa-list"></div>
+            <input type="text" id="qa-question" placeholder="Ask a question...">
+            <button id="ask-question-btn">Ask</button>
+            <button id="close-qa-btn" class="modal-close">Close</button>
+        </div>
+        <!-- Account Modal -->
+        <div class="modal" id="account-modal">
+            <h2>My Account</h2>
+            <input type="text" id="user-name" placeholder="Name">
+            <input type="email" id="user-email" placeholder="Email">
+            <button id="save-user-btn">Save</button>
+            <button id="open-address-btn">Manage Addresses</button>
+            <button id="close-account-btn" class="modal-close">Close</button>
+        </div>
+        <!-- Admin Dashboard Modal -->
+        <div class="modal" id="admin-modal">
+            <h2>Admin Dashboard</h2>
+            <div id="admin-dashboard-content"></div>
+            <button id="close-admin-btn" class="modal-close">Close</button>
+        </div>
+        <!-- Notifications Modal -->
+        <div class="modal" id="notifications-modal">
+            <h2>Notifications</h2>
+            <ul id="notifications-list"></ul>
+            <button id="close-notifications-btn" class="modal-close">Close</button>
+        </div>
+        <!-- Support Modal -->
+        <div class="modal" id="support-modal">
+            <h2>Support & Help</h2>
+            <p>Contact us at <a href="mailto:support@shopease.com">support@shopease.com</a> or call 1800-123-456.</p>
+            <button id="close-support-btn" class="modal-close">Close</button>
+        </div>
+        <!-- Recently Viewed -->
+        <section id="recently-viewed-section">
+            <h3>Recently Viewed</h3>
+            <div class="products-grid" id="recently-viewed-grid"></div>
+        </section>
+        <!-- Newsletter -->
+        <section id="newsletter-section">
+            <form id="newsletter-form">
+                <input type="email" id="newsletter-email" placeholder="Subscribe to our newsletter" required>
+                <button type="submit">Subscribe</button>
+            </form>
+            <span id="newsletter-msg"></span>
+        </section>
+    </main>
+    <footer>
+        &copy; 2025 ShopEase. All rights reserved.
+    </footer>
+    <div class="overlay" id="overlay"></div>
+    <div id="notification-container"></div>
+    <script src="Ecom.js"></script>
+</body>
+</html>
